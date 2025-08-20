@@ -1,7 +1,8 @@
 #include"memoria_dinamica.h"
+#include"crear_Archivo.h"
 bool crear_memoria_dinamica(tVector *vec, size_t tamanio, size_t tam_Elemento)
 {
-    vec->vec=malloc(tamanio*tam_Elem);
+    vec->vec=malloc(tamanio*tam_Elemento);
     if(!vec->vec)
     {
         printf("Error al agregar memoria");
@@ -41,4 +42,16 @@ bool destruir_Memoria(tVector *vec)
     vec->tamanio=0;
     vec->tam_Elemento=0;
     return true;
+}
+void mostrar_Contenido_De_Memoria(tVector *vec,size_t i)
+{
+    tEmpleado *emp;
+
+    emp = (tEmpleado*)((char*)vec->vec+vec->tam_Elemento*(i));
+    printf("\nID: %d\n",emp->id);
+    printf("NOMBRE Y APELLIDO: %s\n",emp->apyn);
+    printf("EDAD: %d\n",emp->edad);
+    printf("CATEGORIA: %c\n",emp->categoria);
+    printf("SUELDO: %9.2f\n",emp->sueldo);
+    printf("****************************************************************");
 }

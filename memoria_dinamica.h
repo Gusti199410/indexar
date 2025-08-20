@@ -1,7 +1,11 @@
 #ifndef MEMORIA_DINAMICA_H_INCLUDED
 #define MEMORIA_DINAMICA_H_INCLUDED
-#include""
+#include"memoria_dinamica.h"
 #include"idx.h"
+#include<stdlib.h>
+#include<stdbool.h>
+#include<stdio.h>
+
 typedef struct
 {
     void *vec;
