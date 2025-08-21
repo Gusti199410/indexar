@@ -21,6 +21,7 @@ bool indexar_Archivo(const char *archivo, tVector *vec)
         fread(&emp,sizeof(tEmpleado),1,fp);
         contador++;
     }
+    fclose(fp);
     return true;
 }
 
@@ -95,4 +96,31 @@ bool cargar_Archivo_IDX_En_Memoria(const char *archivo,tVector *vec)
     }
     fclose(fp);
     return true;
+}
+void buscar_Archivo(const char *archivo, tVector *vec)
+{
+    FILE *fp = fopen(archivo,"rb");
+    if(!fp)
+    {
+        printf("Error al abrir archivo de lectura");
+        exit(1);
+    }
+    tIdx *idx=vec->vec;
+    tEmpleado emp;
+    size_t id_B;
+    rewind(fp);
+    do{
+        printf("INGRESE EL ID QUE BUSCA: ");
+        scanf("%lu",&id_B);
+        if(idx->orden == id_B)
+        {
+            fseek(fp,idx->orden*sizeof(tEmpleado),SEEK_CUR);
+            fread(&emp,sizeof(tEmpleado),1,fp);
+            printf("Nombre: %s\n",emp.apyn);
+            rewind(fp);
+
+        }
+
+
+    }while(id_B!=0);
 }
