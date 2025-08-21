@@ -105,22 +105,34 @@ void buscar_Archivo(const char *archivo, tVector *vec)
         printf("Error al abrir archivo de lectura");
         exit(1);
     }
-    tIdx *idx=vec->vec;
     tEmpleado emp;
     size_t id_B;
     rewind(fp);
-    do{
+    do
+    {
         printf("INGRESE EL ID QUE BUSCA: ");
         scanf("%lu",&id_B);
-        if(idx->orden == id_B)
+        tIdx *idx=vec->vec;
+        tIdx *fin=vec->vec +(vec->ce*vec->tam_Elemento);
+        for(; idx<fin; idx++)
         {
-            fseek(fp,idx->orden*sizeof(tEmpleado),SEEK_CUR);
-            fread(&emp,sizeof(tEmpleado),1,fp);
-            printf("Nombre: %s\n",emp.apyn);
-            rewind(fp);
 
+            if(idx->orden == id_B)
+            {
+                fseek(fp,(idx->orden-1)*sizeof(tEmpleado),SEEK_SET);
+                fread(&emp,sizeof(tEmpleado),1,fp);
+                printf("\nID: %d\n",emp.id);
+                printf("NOMBRE Y APELLIDO: %s\n",emp.apyn);
+                printf("EDAD: %d\n",emp.edad);
+                printf("CATEGORIA: %c\n",emp.categoria);
+                printf("SUELDO: %9.2f\n",emp.sueldo);
+                printf("\n****************************************************************\n");
+                rewind(fp);
+                break;
+            }
         }
 
 
-    }while(id_B!=0);
+    }
+    while(id_B!=0);
 }
