@@ -127,12 +127,13 @@ void buscar_Archivo(const char *archivo, tVector *vec)
                 printf("CATEGORIA: %c\n",emp.categoria);
                 printf("SUELDO: %9.2f\n",emp.sueldo);
                 printf("\n****************************************************************\n");
-                rewind(fp);
                 break;
-            }
+
+            }else{
+                printf("\nError al ingresar numero\n");
+                break;
+                }
         }
-
-
-    }
-    while(id_B!=0);
+    }while(id_B!=0);
+    fclose(fp);
 }
