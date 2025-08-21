@@ -2,6 +2,7 @@
 #include"memoria_dinamica.h"
 #include"crear_Archivo.h"
 #define archivo_binario "arch.bin"
+#define archivo_Idx "archivo.idx"
 
 
 int main()
@@ -39,6 +40,16 @@ int main()
         printf("Error al indexar archivo");
         return 0;
     }
-    imprimir_En_Pantalla(&idx);
+   //imprimir_En_Pantalla(&idx);
+
+    /**CREAR archivo para alojar direccion de idx */
+    if(!guardar_Idx_En_Archivo_Bin(archivo_Idx,&idx))
+    {
+        printf("Error al guardar el archivo");
+        return 0;
+    }
+    printf("\nIDX leidos en archivo\n");
+    leer_Archivo_Idx(archivo_Idx);
+
     return 0;
 }

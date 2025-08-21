@@ -35,3 +35,40 @@ void imprimir_En_Pantalla(tVector *vec)
     }
 }
 
+bool guardar_Idx_En_Archivo_Bin(const char *arc,tVector *vec)
+{
+    FILE *fp=fopen(arc,"wb");
+    if(!fp)
+    {
+        printf("Error al abrir archivo de escritura idx");
+        return false;
+    }
+    tIdx *inicio=vec->vec;
+    tIdx *fin=vec->vec+vec->ce*vec->tam_Elemento;
+    while(inicio<fin)
+    {
+        fwrite(inicio,sizeof(tIdx),1,fp);
+        inicio++;
+    }
+    fclose(fp);
+    destruir_Memoria(vec);
+}
+void leer_Archivo_Idx(const char *archivo)
+{
+    FILE *fp=fopen(archivo,"rt");
+    if(!fp)
+    {
+        printf("Error al leer archivo");
+        return 0;
+    }
+    tIdx id;
+    fread(&id,sizeof(tIdx),1,fp);
+    while(!feof(fp))
+    {
+        printf("\nID: %d\n",id.orden);
+        printf("NOMBRE: %s\n",id.nombre);
+        printf("\n--------------------------\n");
+        fread(&id,sizeof(tIdx),1,fp);
+    }
+    fclose(fp);
+}

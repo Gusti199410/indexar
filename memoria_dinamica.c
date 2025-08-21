@@ -1,4 +1,5 @@
 #include"memoria_dinamica.h"
+#include"crear_Archivo.h"
 bool crear_memoria_dinamica(tVector *vec, size_t tamanio, size_t tam_Elemento)
 {
     vec->vec=malloc(tamanio*tam_Elemento);
