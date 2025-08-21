@@ -64,7 +64,8 @@ int main()
     }
     printf("\n62 \leidos en memoria Imprimidos en pantalla: \n");
     imprimir_En_Pantalla(&ini);
-    destruir_Memoria(&ini);
+    printf("\n////////////////////////////////////////////////////////\n");
+    buscar_Archivo(archivo_binario,&ini);
 
     return 0;
 }
