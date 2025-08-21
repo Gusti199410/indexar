@@ -28,10 +28,12 @@ void imprimir_En_Pantalla(tVector *vec)
 {
     tIdx *inicio=(tIdx*)vec->vec ;
     tIdx *fin=(tIdx*)vec->vec+vec->ce;
-    for(tIdx *i= inicio;i<fin;i++)
+    while(inicio<fin)
     {
-        printf("\nID: %d\n",i->orden);
-        printf("NOMBRE: %s\n",i->nombre);
+        printf("\nID: %d\n",inicio->orden);
+        printf("NOMBRE: %s\n",inicio->nombre);
+        printf("\n---------------------------------\n");
+        inicio++;
     }
 }
 
@@ -51,15 +53,15 @@ bool guardar_Idx_En_Archivo_Bin(const char *arc,tVector *vec)
         inicio++;
     }
     fclose(fp);
-    destruir_Memoria(vec);
+    return true;
 }
 void leer_Archivo_Idx(const char *archivo)
 {
-    FILE *fp=fopen(archivo,"rt");
+    FILE *fp=fopen(archivo,"rb");
     if(!fp)
     {
         printf("Error al leer archivo");
-        return 0;
+        exit(1);
     }
     tIdx id;
     fread(&id,sizeof(tIdx),1,fp);
@@ -71,4 +73,26 @@ void leer_Archivo_Idx(const char *archivo)
         fread(&id,sizeof(tIdx),1,fp);
     }
     fclose(fp);
+}
+bool cargar_Archivo_IDX_En_Memoria(const char *archivo,tVector *vec)
+{
+    FILE *fp= fopen(archivo, "rb");
+    if(!fp)
+    {
+        printf("Error al abrir el archivo");
+        return false;
+    }
+    tIdx id;
+    fread(&id,sizeof(tIdx),1,fp);
+    while(!feof(fp))
+    {
+        if(!cargar_En_Memoria(vec,&id))
+        {
+            printf("Error al cargar archivo");
+            return false;
+        }
+        fread(&id,sizeof(tIdx),1,fp);
+    }
+    fclose(fp);
+    return true;
 }

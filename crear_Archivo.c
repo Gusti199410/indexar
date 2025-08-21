@@ -7,7 +7,7 @@ bool cargar_En_Memoria(tVector *vec,void *dato)
     {
         if(!agregar_Memoria(vec))
         {
-            printf("No se puedo agregar memoria");
+            printf("\nNo se puedo agregar memoria\n");
             return false;
         }
     }

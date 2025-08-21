@@ -43,13 +43,28 @@ int main()
    //imprimir_En_Pantalla(&idx);
 
     /**CREAR archivo para alojar direccion de idx */
+
     if(!guardar_Idx_En_Archivo_Bin(archivo_Idx,&idx))
     {
         printf("Error al guardar el archivo");
         return 0;
     }
+    destruir_Memoria(&idx);
+    destruir_Memoria(&vec);
     printf("\nIDX leidos en archivo\n");
     leer_Archivo_Idx(archivo_Idx);
+
+    /** alojar de archivo a memoria */
+    tVector ini;
+    crear_memoria_dinamica(&ini,3,sizeof(tIdx));
+    if(!cargar_Archivo_IDX_En_Memoria(archivo_Idx,&ini))
+    {
+        printf("\nError al abrir el arhivo 59");
+        return 0;
+    }
+    printf("\n62 \leidos en memoria Imprimidos en pantalla: \n");
+    imprimir_En_Pantalla(&ini);
+    destruir_Memoria(&ini);
 
     return 0;
 }

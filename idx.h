@@ -14,4 +14,5 @@ bool indexar_Archivo(const char *archivo, tVector *vec);
 void imprimir_En_Pantalla(tVector *vec);
 bool guardar_Idx_En_Archivo_Bin(const char *arc,tVector *vec);
 void leer_Archivo_Idx(const char *archivo);
+bool cargar_Archivo_IDX_En_Memoria(const char *archivo,tVector *vec);
 #endif // IDX_H
