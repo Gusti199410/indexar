@@ -1,8 +1,9 @@
 #ifndef CREAR_ARCHIVO_H_INCLUDED
 #define CREAR_ARCHIVO_H_INCLUDED
-#include"memoria_dinamica.h"
 #include"idx.h"
 #include<string.h>
+#include"memoria_dinamica.h"
+#include"crear_Archivo.h"
 typedef struct
 {
     int id;

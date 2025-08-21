@@ -1,11 +1,9 @@
 #ifndef MEMORIA_DINAMICA_H_INCLUDED
 #define MEMORIA_DINAMICA_H_INCLUDED
-#include"memoria_dinamica.h"
-#include"idx.h"
 #include<stdlib.h>
 #include<stdbool.h>
 #include<stdio.h>
-
+#include"crear_Archivo.h"
 typedef struct
 {
     void *vec;
@@ -14,8 +12,6 @@ typedef struct
     size_t tam_Elemento;
 
 }tVector;
-
-
 
 bool crear_memoria_dinamica(tVector *vec,size_t tamanio,size_t tam_Elemento);
 bool agregar_Memoria(tVector *vec);

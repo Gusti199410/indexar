@@ -7,6 +7,7 @@
 int main()
 {
     tVector vec;
+    tVector idx;
     tEmpleado emp[]={{10,"Gustavo Neubauer",30,'A',5000.3},
                      {5,"Lidia Beltrami",51,'A',5000.3},
                      {2,"Gabriel Neubauer",22,'A',5000.3},
@@ -14,7 +15,12 @@ int main()
                      {3,"Aldana Neubauer",26,'A',5000.3},
                      {4,"Mirta Neubauer",59,'A',5000.3}};
 
-    crear_memoria_dinamica(&vec,5,sizeof(tEmpleado));
+/** CREAR MEMORIA PARA ALOJAR DATOS */
+
+    if(!crear_memoria_dinamica(&vec,5,sizeof(tEmpleado)))
+    {
+        printf("Error al agregar memoria");
+    }
     size_t ce=sizeof(emp)/sizeof(tEmpleado);
 
     for(size_t i=0;i<ce;i++)
@@ -25,9 +31,14 @@ int main()
     {
         mostrar_Contenido_De_Memoria(&vec,i);
     }
-    printf("\n///////////////////////////////////////////////////////\n");
+    /** CREAR MEMORIA PARA ALOJAR IDX */
+    crear_memoria_dinamica(&idx,3,sizeof(tIdx));
     cargar_De_Memoria_A_Archivo(archivo_binario,&vec);
-    leer_Archivo_Binario(archivo_binario);
-
+    if(!indexar_Archivo(archivo_binario,&idx))
+    {
+        printf("Error al indexar archivo");
+        return 0;
+    }
+    imprimir_En_Pantalla(&idx);
     return 0;
 }
