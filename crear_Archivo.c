@@ -65,30 +65,51 @@ void leer_Archivo_Binario(const char *arc_bin)
 
 bool ordenar_Archivo(const char *archivo)
 {
-    FILE *fp=fopen(archivo,"r+b");
+    FILE *fp=fopen(archivo, "r+b");
     if(!fp)
     {
-        printf("Error al abrir el archivo en r+b");
+        printf("Error al abrir el archivo lectura L72 memoria_dinamica\n");
         return false;
     }
+
     tEmpleado emp;
+    tVector v;
+    crear_memoria_dinamica(&v, 5, sizeof(tEmpleado));
+
+    // Cargar en memoria
+    while(fread(&emp,sizeof(tEmpleado),1,fp) == 1)
+    {
+        cargar_En_Memoria(&v,&emp);
+    }
+    fclose(fp);
+
+    // Ordenamiento burbuja
+    tEmpleado *e = (tEmpleado*)v.vec;
+    tEmpleado *fin = e + v.ce;
     tEmpleado aux;
 
-    fread(&emp, sizeof(tEmpleado),1,fp);
-    aux.id=emp.id;
-    strcpy(aux.apyn,emp.apyn);
-    aux.edad=emp.edad;
-    aux.categoria=aux.categoria;
-    aux.sueldo=aux.sueldo;
-    while(!feof(fp))
+    for(tEmpleado *i=e; i<fin-1; i++)
     {
-        if(aux.edad>emp.edad)
+        for(tEmpleado *j=e; j<fin-1; j++)
         {
-            aux.id=emp.id;
-            strcpy(aux.apyn,emp.apyn);
-            aux.edad=emp.edad;
-            aux.categoria=aux.categoria;
-            aux.sueldo=aux.sueldo;
+            if(j->id > (j+1)->id)
+            {
+                memcpy(&aux, j, sizeof(tEmpleado));
+                memcpy(j, j+1, sizeof(tEmpleado));
+                memcpy(j+1, &aux, sizeof(tEmpleado));
+            }
         }
-
     }
+
+    // Reescribir archivo ordenado
+    fp=fopen(archivo, "wb");
+    if(!fp)
+    {
+        printf("Error al abrir archivo en escritura\n");
+        return false;
+    }
+    fwrite(v.vec, sizeof(tEmpleado), v.ce, fp);
+    fclose(fp);
+
+    return true;
+}

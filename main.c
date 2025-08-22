@@ -63,15 +63,14 @@ int main()
         printf("\nError al abrir el arhivo 59");
         return 0;
     }
-    printf("\n62 leidos en memoria Imprimidos en pantalla: \n");
-    imprimir_En_Pantalla(&ini);
-    printf("\n////////////////////////////////////////////////////////\n");
-    buscar_Archivo(archivo_binario,&ini);
-    destruir_Memoria(&ini);
+//    printf("\n62 leidos en memoria Imprimidos en pantalla: \n");
+//    imprimir_En_Pantalla(&ini);
+//    printf("\n////////////////////////////////////////////////////////\n");
+//    buscar_Archivo(archivo_binario,&ini);
+//    destruir_Memoria(&ini);
 
     /**                            ORDENAR ARCHIVO                                             */
-
-
-
+    ordenar_Archivo(archivo_binario);
+    leer_Archivo_Binario(archivo_binario);
     return 0;
 }
