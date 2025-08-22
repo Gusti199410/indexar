@@ -62,3 +62,33 @@ void leer_Archivo_Binario(const char *arc_bin)
     }
     fclose(fp);
 }
+
+bool ordenar_Archivo(const char *archivo)
+{
+    FILE *fp=fopen(archivo,"r+b");
+    if(!fp)
+    {
+        printf("Error al abrir el archivo en r+b");
+        return false;
+    }
+    tEmpleado emp;
+    tEmpleado aux;
+
+    fread(&emp, sizeof(tEmpleado),1,fp);
+    aux.id=emp.id;
+    strcpy(aux.apyn,emp.apyn);
+    aux.edad=emp.edad;
+    aux.categoria=aux.categoria;
+    aux.sueldo=aux.sueldo;
+    while(!feof(fp))
+    {
+        if(aux.edad>emp.edad)
+        {
+            aux.id=emp.id;
+            strcpy(aux.apyn,emp.apyn);
+            aux.edad=emp.edad;
+            aux.categoria=aux.categoria;
+            aux.sueldo=aux.sueldo;
+        }
+
+    }

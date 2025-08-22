@@ -1,13 +1,13 @@
 # depslib dependency file v1.0
-1755804922 source:c:\users\thebestgus\desktop\repositorio\indexar\idx.c
+1755817508 source:c:\users\thebestgus\desktop\repositorio\indexar\idx.c
 	"idx.h"
 
-1755799612 source:c:\users\thebestgus\desktop\repositorio\indexar\main.c
+1755815506 source:c:\users\thebestgus\desktop\repositorio\indexar\main.c
 	"idx.h"
 	"memoria_dinamica.h"
 	"crear_Archivo.h"
 
-1755799400 c:\users\thebestgus\desktop\repositorio\indexar\idx.h
+1755813822 c:\users\thebestgus\desktop\repositorio\indexar\idx.h
 	<stdbool.h>
 	"memoria_dinamica.h"
 	"crear_Archivo.h"
@@ -26,7 +26,7 @@
 	"crear_Archivo.h"
 	"stdbool.h"
 
-1755786303 c:\users\thebestgus\desktop\repositorio\indexar\crear_archivo.h
+1755819742 c:\users\thebestgus\desktop\repositorio\indexar\crear_archivo.h
 	"idx.h"
 	<string.h>
 	"memoria_dinamica.h"

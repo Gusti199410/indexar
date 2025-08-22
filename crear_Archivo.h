@@ -16,4 +16,6 @@ typedef struct
 
 bool cargar_En_Memoria(tVector *vec,void* dato);
 bool cargar_De_Memoria_A_Archivo(const char *archivo,tVector *vec);
+bool ordenar_Archivo(const char *archivo);
+
 #endif // CREAR_ARCHIVO_H_INCLUDED

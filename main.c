@@ -14,7 +14,8 @@ int main()
                      {2,"Gabriel Neubauer",22,'A',5000.3},
                      {1,"Gustavo julio Neubauer",55,'A',5000.3},
                      {3,"Aldana Neubauer",26,'A',5000.3},
-                     {4,"Mirta Neubauer",59,'A',5000.3}};
+                     {4,"Mirta Neubauer",59,'A',5000.3},
+                     {9,"Sol Enrri",28,'B',1250.3}};
 
 /** CREAR MEMORIA PARA ALOJAR DATOS */
 
@@ -62,10 +63,15 @@ int main()
         printf("\nError al abrir el arhivo 59");
         return 0;
     }
-    printf("\n62 \leidos en memoria Imprimidos en pantalla: \n");
+    printf("\n62 leidos en memoria Imprimidos en pantalla: \n");
     imprimir_En_Pantalla(&ini);
     printf("\n////////////////////////////////////////////////////////\n");
     buscar_Archivo(archivo_binario,&ini);
+    destruir_Memoria(&ini);
+
+    /**                            ORDENAR ARCHIVO                                             */
+
+
 
     return 0;
 }

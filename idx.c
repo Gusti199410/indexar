@@ -106,17 +106,16 @@ void buscar_Archivo(const char *archivo, tVector *vec)
         exit(1);
     }
     tEmpleado emp;
-    size_t id_B;
+    int id_B;
     rewind(fp);
     do
     {
         printf("INGRESE EL ID QUE BUSCA: ");
-        scanf("%lu",&id_B);
+        scanf("%d",&id_B);
         tIdx *idx=vec->vec;
         tIdx *fin=vec->vec +(vec->ce*vec->tam_Elemento);
         for(; idx<fin; idx++)
         {
-
             if(idx->orden == id_B)
             {
                 fseek(fp,(idx->orden-1)*sizeof(tEmpleado),SEEK_SET);
@@ -128,12 +127,16 @@ void buscar_Archivo(const char *archivo, tVector *vec)
                 printf("SUELDO: %9.2f\n",emp.sueldo);
                 printf("\n****************************************************************\n");
                 break;
+            }
 
-            }else{
-                printf("\nError al ingresar numero\n");
-                break;
-                }
         }
-    }while(id_B!=0);
+        if(idx->orden!=id_B)
+        {
+            printf("\nIngrese un numero del 1 al 6\n");
+        }
+
+    }
+    while(id_B!=0);
     fclose(fp);
 }
+
